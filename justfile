@@ -21,7 +21,7 @@ release version:
     git pull
     git -C pretalx fetch
     git -C pretalx checkout {{ version }}
-    git commit -am "Release {{ version }}"
+    git commit -am "Release {{ version }}" || true
     git tag -m "Release {{ version }}" {{ version }}
     git push --recurse-submodules=no
     git push --tags --recurse-submodules=no
