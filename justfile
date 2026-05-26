@@ -4,6 +4,15 @@ set shell := ["bash", "-euo", "pipefail", "-c"]
 default:
     @just --list
 
+# Init so we can work here
+[group('init')]
+init:
+    git submodule update --init
+    git -C pretalx fetch
+    git -C pretalx status
+    @echo 'Available Tags:'
+    git -C pretalx tag|tail -5
+
 # Release a new pretalx-docker version
 [group('release')]
 [confirm("This will push tags to origin. Continue?")]

@@ -21,6 +21,22 @@ jobs:
         with:
           submodules: true
 
+      - name: Initialize submodule with tag checkout
+        run: |
+          cd pretalx
+          git fetch --all --tags
+
+          # Check if current build is from a tag
+          if [[ "${{ github.ref }}" == refs/tags/* ]]; then
+            TAG_NAME="${{ github.ref_name }}"
+            echo "Building from tag: $TAG_NAME"
+            git checkout "tags/$TAG_NAME" 2>/dev/null || git checkout HEAD
+          else
+            echo "Building from branch/PR, using HEAD"
+            git checkout HEAD
+          fi
+          git log -1 --oneline
+
       - name: Docker meta
         id: meta
         uses: docker/metadata-action@v6
