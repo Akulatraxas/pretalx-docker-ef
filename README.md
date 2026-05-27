@@ -20,11 +20,13 @@ git checkout aku_main
 
 ## Configuration
 
-- mkdir -p  ~/pretalx/conf ~/.config/containers/systemd/
+- mkdir -p  ~/pretalx/conf ~/pretalx/env ~/.config/containers/systemd/
 - Copy configuration files and modify them
   - cp conf/pretalx.cfg \~/pretalx/conf/pretalx.cfg
   - cp conf/ingress-nginx.conf \~/pretalx/conf/ingress-nginx.conf
 - Prepare environment files (Basically configuration files but used by quadlet to populate environment)
+  - cp conf/env/* \~/pretalx/env
+- Prepare env files
   - cp deployment/quadlet/* \~/.config/containers/systemd/
 
 
